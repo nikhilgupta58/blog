@@ -1,4 +1,5 @@
 import AppLayout from "../../components/AppLayout";
+import { blogEntryRoute } from "../../constants/route";
 
 const mock = [
   {
@@ -40,7 +41,13 @@ export default function Home() {
           {mock?.map((row) => (
             <div
               key={row.id}
-              className="flex flex-col gap-1 border-[1px] border-blue-300 p-2 rounded"
+              className="flex flex-col gap-1 border-[1px] border-blue-300 p-2 rounded cursor-pointer"
+              onClick={() =>
+                window.open(
+                  `${blogEntryRoute.replace(":id", row.id)}`,
+                  "_blank"
+                )
+              }
             >
               <div>
                 <h2 className="font-bold">{row.title}</h2>
