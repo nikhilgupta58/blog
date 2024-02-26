@@ -5,6 +5,8 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       cacheTime: 0,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
       retryDelay(failureCount) {
         return failureCount * 10000;
       },

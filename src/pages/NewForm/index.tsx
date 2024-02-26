@@ -1,4 +1,5 @@
 import AppLayout from "../../components/AppLayout";
+import useCreateBlog from "./hooks/useCreateBlog";
 
 const config = [
   {
@@ -21,15 +22,17 @@ const config = [
 const inputClass = "border-[1px]  w-full max-w-[500px] p-2";
 
 export default function NewForm() {
+  const { mutate, isLoading } = useCreateBlog();
   return (
     <AppLayout>
       <h1>Add new blog</h1>
       <div>
         <form
           onSubmit={(e: any) => {
+            e.preventDefault();
             const formData = new FormData(e.target);
             const formProps = Object.fromEntries(formData);
-            console.log(formProps);
+            mutate(formProps);
           }}
         >
           {config.map((row) => {
@@ -49,11 +52,20 @@ export default function NewForm() {
               </div>
             );
           })}
-          <input
-            type="submit"
-            value="Submit"
-            className="mt-5 px-6 py-2 border-2 bg-black text-white rounded-md"
-          />
+          {isLoading ? (
+            <div className="flex">
+              <div className="mt-5 px-6 py-2 border-2 bg-black text-white rounded-md">
+                Processing
+              </div>
+              <div />
+            </div>
+          ) : (
+            <input
+              type="submit"
+              value="Submit"
+              className="mt-5 px-6 py-2 border-2 bg-black text-white rounded-md"
+            />
+          )}
         </form>
       </div>
     </AppLayout>

@@ -1,9 +1,11 @@
+import { useHistory } from "react-router-dom";
 import AppLayout from "../../components/AppLayout";
-import { blogEntryRoute } from "../../constants/route";
+import { blogEntryRoute, newFormRoute } from "../../constants/route";
 import useGetBlogs from "./hooks/useGetBlogs";
 
 export default function Home() {
   const { data, isLoading } = useGetBlogs();
+  const history = useHistory();
   return (
     <AppLayout>
       <div className="flex flex-col w-full gap-4">
@@ -32,6 +34,12 @@ export default function Home() {
             ))}
           </div>
         )}
+      </div>
+      <div
+        onClick={() => history.push(newFormRoute)}
+        className="px-4 py-2 rounded-md bg-black cursor-pointer text-white mt-3 text-[20px] text-center"
+      >
+        Add New Blog
       </div>
     </AppLayout>
   );
