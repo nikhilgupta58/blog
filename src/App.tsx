@@ -1,5 +1,11 @@
+import Providers from "./Providers";
+
 function App() {
-  return <></>;
+  return (
+    <Providers>
+      <></>
+    </Providers>
+  );
 }
 
 export default App;
