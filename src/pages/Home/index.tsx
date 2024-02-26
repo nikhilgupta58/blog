@@ -29,7 +29,7 @@ export default function Home() {
                   <h2 className="font-bold">{row.title}</h2>
                   <p className="font-normal text-[12px]">by {row.author}</p>
                 </div>
-                <p className="line-clamp-2">{row.content}</p>
+                <p className="line-clamp-2 break-all">{row.content}</p>
               </div>
             ))}
           </div>
